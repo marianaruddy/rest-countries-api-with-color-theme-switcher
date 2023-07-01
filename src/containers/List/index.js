@@ -24,7 +24,9 @@ const List = () => {
                     placeholder="Search for a country..."
                     onChange={(value) => {
                         setCountriesShowing(countries.filter((country) => {
-                            return country.name.includes(value.target.value);
+                            const upperCaseCountry = country.name.toUpperCase()
+                            const upperCaseSearch = value.target.value.toUpperCase()
+                            return upperCaseCountry.includes(upperCaseSearch)
                         }))
                     }}
                 ></Input>
