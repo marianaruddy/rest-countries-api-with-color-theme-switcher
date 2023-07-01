@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { devices } from "../../devices";
 
 export const TopBarWrapper = styled.div`
     box-shadow: hsl(0, 0%, 52%) 0px 0px 16px -5px;
@@ -6,6 +7,10 @@ export const TopBarWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 36px 12px;
+
+    @media ${devices.desktop} {
+        padding: 36px 48px;
+    }
 `;
 
 export const H1 = styled.div`
