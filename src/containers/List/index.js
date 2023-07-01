@@ -49,14 +49,15 @@ const List = () => {
             </Top>
             <ListWrapper>
                 {countriesShowing.length > 0 && countriesShowing.map(
-                    ({ name, region, capital, flag, population, numericCode }) => (
+                    ({ name, region, capital, flag, population, alpha3Code }) => (
                         <CountryInfo
                             name={name}
                             region={region}
                             capital={capital}
                             flag={flag}
                             population={population}
-                            key={numericCode}
+                            key={alpha3Code}
+                            alpha3Code={alpha3Code}
                         />
                     )
                 )}

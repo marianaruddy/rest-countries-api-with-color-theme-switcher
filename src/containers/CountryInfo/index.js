@@ -2,9 +2,9 @@ import React from "react";
 import { FlagCard, Flag, FlagCardInfo, CardTitle } from "./style";
 
 const CountryInfo = info => {
-    const { name, region, capital, flag, population } = info;
+    const { name, region, capital, flag, population, alpha3Code } = info;
     return (
-        <FlagCard>
+        <FlagCard to={`/country/${alpha3Code}`}>
             <Flag src={flag} alt={`${name} flag`}/>
             <FlagCardInfo>
                 <CardTitle>{name}</CardTitle>

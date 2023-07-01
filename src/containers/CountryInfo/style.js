@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const FlagCard = styled.div`
+export const FlagCard = styled(Link)`
   max-width: 340px;
   display: flex;
   flex-direction: column;
