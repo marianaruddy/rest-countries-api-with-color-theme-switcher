@@ -10,8 +10,12 @@ import {
     Flag,
     BorderButtonsWrapper,
     BackButton,
+    DetailsWrapper,
+    DetaisList,
+    BordersWrapper,
     BorderButton,
-    SectionTile,
+    SectionTitle,
+    InfoWrapper,
 } from "./style";
 
 const CountryDetails = ({ isDark, setIsDark }) => {
@@ -58,22 +62,30 @@ const CountryDetails = ({ isDark, setIsDark }) => {
             <TopBar isDark={isDark} setIsDark={setIsDark}/>
             <Content>
                 <BackButton to={'..'}>Back</BackButton>
-                <Flag src={flag} alt={`${name} flag`}/>
-                <Name>{name}</Name>
-                <Details1>
-                    <p><b>Native name:</b> {nativeName}</p>
-                    <p><b>Population:</b> {population.toLocaleString("en-US")}</p>
-                    <p><b>Region:</b> {region}</p>
-                    <p><b>Sub Region:</b> {subregion}</p>
-                    <p><b>Capital:</b> {capital}</p>
-                </Details1>
-                <Details2>
-                    <p><b>Top Level Domain:</b> {topLevelDomain}</p>
-                    <p><b>Currencies:</b> {getNamesList(currencies)}</p>
-                    <p><b>Languages:</b> {getNamesList(languages)}</p>
-                </Details2>
-                <SectionTile>Border Countries:</SectionTile>
-                <BorderButtonsWrapper>{getNamesList(bordersNames, true)}</BorderButtonsWrapper>
+                <InfoWrapper>
+                    <Flag src={flag} alt={`${name} flag`}/>
+                    <DetailsWrapper>
+                        <Name>{name}</Name>
+                        <DetaisList>
+                            <Details1>
+                                <p><b>Native name:</b> {nativeName}</p>
+                                <p><b>Population:</b> {population.toLocaleString("en-US")}</p>
+                                <p><b>Region:</b> {region}</p>
+                                <p><b>Sub Region:</b> {subregion}</p>
+                                <p><b>Capital:</b> {capital}</p>
+                            </Details1>
+                            <Details2>
+                                <p><b>Top Level Domain:</b> {topLevelDomain}</p>
+                                <p><b>Currencies:</b> {getNamesList(currencies)}</p>
+                                <p><b>Languages:</b> {getNamesList(languages)}</p>
+                            </Details2>
+                        </DetaisList>
+                        <BordersWrapper>
+                            <SectionTitle>Border Countries:</SectionTitle>
+                            <BorderButtonsWrapper>{getNamesList(bordersNames, true)}</BorderButtonsWrapper>
+                        </BordersWrapper>
+                    </DetailsWrapper>
+                </InfoWrapper>
             </Content>
         </>
     );

@@ -15,13 +15,43 @@ export const Content = styled.div`
     }
 `;
 
-export const Flag = styled.img`
+export const InfoWrapper = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    flex-direction: column;
 
+    @media ${devices.desktop} {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        flex-direction: row;
+    }
+`;
+
+export const Flag = styled.img`
+    max-width: 100%;
 `;
 
 export const Name = styled.div`
   font-size: 20px;
   font-weight: 800;
+`;
+
+export const DetailsWrapper = styled.div`
+    display: grid;
+    grid-template-columns: 100%
+`;
+
+export const DetaisList = styled.div`
+    display: grid;
+    gap: 16px;
+    margin: 16px 0;
+
+    @media ${devices.desktop} {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin: 30px 0 40px 0;
+    }
 `;
 
 export const Details1 = styled.div`
@@ -52,11 +82,20 @@ export const BorderButton = styled(Link)`
     font-size: 14px;
 `;
 
-export const SectionTile = styled.div`
+export const SectionTitle = styled.span`
     font-size: 18px;
     font-weight: 800;
-`
 
+    @media ${devices.desktop} {
+        width: 220px;
+    }
+`;
+
+export const BordersWrapper = styled.div`
+    @media ${devices.desktop} {
+        display: flex;
+    }
+`;
 
 export const BorderButtonsWrapper = styled.div`
     display: grid;
