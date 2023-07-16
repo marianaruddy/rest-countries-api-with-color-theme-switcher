@@ -19,13 +19,13 @@ import {
 } from "./style";
 
 const CountryDetails = ({ isDark, setIsDark }) => {
-    const alpha3Code = useParams()?.alpha3Code
+    const cca3 = useParams()?.cca3
 
-    const findCountryByAlpha3Code = (allCountries, alpha3Code) => (
-        allCountries.find(country => country.alpha3Code === alpha3Code)
+    const findCountryByAlphaCode3 = (allCountries, cca3) => (
+        allCountries.find(country => country.cca3 === cca3)
     )
 
-    const info = findCountryByAlpha3Code(countries, alpha3Code)
+    const info = findCountryByAlphaCode3(countries, cca3)
 
     const {
         flag,
@@ -41,11 +41,11 @@ const CountryDetails = ({ isDark, setIsDark }) => {
         borders,
     } = info
 
-    const bordersNames = borders.map((currAlpha3Code) => {
-        const countryFoundInfo = findCountryByAlpha3Code(countries, currAlpha3Code)
+    const bordersNames = borders.map((currcca3) => {
+        const countryFoundInfo = findCountryByAlphaCode3(countries, currcca3)
         return ({
             name: countryFoundInfo?.name,
-            alpha3Code: currAlpha3Code
+            cca3: currcca3
         })
     })
 
@@ -53,7 +53,7 @@ const CountryDetails = ({ isDark, setIsDark }) => {
         const name = item?.name ? item.name : '' 
         const text = index === source.length - 1 ? name : `${name}, `
         return isButtons 
-            ? <BorderButton to={`/country/${item?.alpha3Code}`} key={name}>{name}</BorderButton>
+            ? <BorderButton to={`/country/${item?.cca3}`} key={name}>{name}</BorderButton>
             : <span key={name}>{text}</span>
     })
 

@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
+import { useQuery } from "react-query";
 import CountryInfo from "../CountryInfo";
 import { ListWrapper, PageContent, Top, Select, Input } from "./style";
-import countries from '../../../data.json';
+import { fetchAllCountries } from "../../../utils/axios";
 
 const List = () => {
-    const [countriesShowing, setCountriesShowing] = useState(countries);
-    const regions = countries.reduce(
+    const { isLoading, data }  = useQuery('get-countries', fetchAllCountries)
+
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+    
+    const countries = data?.data;
+
+    if (!countries) {
+        return <div>No data</div>
+    }
+
+    const regions = countries ? countries?.reduce(
         (result, country) => ({
             ...result,
           [country['region']]: [
@@ -14,7 +26,7 @@ const List = () => {
         ],
         }), 
         {},
-    );
+    ) : [];
 
     return (
         <PageContent>
@@ -22,25 +34,13 @@ const List = () => {
                 <Input
                     type="text"
                     placeholder="Search for a country..."
-                    onChange={(value) => {
-                        setCountriesShowing(countries.filter((country) => {
-                            const upperCaseCountry = country.name.toUpperCase()
-                            const upperCaseSearch = value.target.value.toUpperCase()
-                            return upperCaseCountry.includes(upperCaseSearch)
-                        }))
-                    }}
+                    onChange={(value) => { }}
                 ></Input>
                 <Select
                     placeholder="Filter by Region"
                     onChange={(value) => {
-                        if (value.target.value === "") {
-                            setCountriesShowing(countries);
-                        }
-                        else {
-                            setCountriesShowing(countries.filter((country) => {
-                                return country.region === (value.target.value);
-                            }))
-                        }
+                        if (value.target.value === "") { }
+                        else { }
                     }}
                 >
                     <option value="" defaultValue>Filter by Region</option>
@@ -48,16 +48,16 @@ const List = () => {
                 </Select>
             </Top>
             <ListWrapper>
-                {countriesShowing.length > 0 && countriesShowing.map(
-                    ({ name, region, capital, flag, population, alpha3Code }) => (
+                {countries.length > 0 && countries.map(
+                    ({ name, region, capital, flags, population, cca3 }) => (
                         <CountryInfo
                             name={name}
                             region={region}
                             capital={capital}
-                            flag={flag}
+                            flags={flags}
                             population={population}
-                            key={alpha3Code}
-                            alpha3Code={alpha3Code}
+                            key={cca3}
+                            cca3={cca3}
                         />
                     )
                 )}
